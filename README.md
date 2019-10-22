@@ -3,6 +3,7 @@ Control Multiple TP Link Smart Plugs without using Kasa app
 
 # Setup
 Instructions are for Ubuntu. Adapt appropriately.
+Using softsCheck guide, [Reverse Engineering the TP-Link HS110](https://www.softscheck.com/en/reverse-engineering-tp-link-hs110/)
 
 1. Connect to device's WiFi network:
 e.g. TP-LINK_Smart Plug_XXXX where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device):
