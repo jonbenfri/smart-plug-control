@@ -1,0 +1,1 @@
+linuxscripts/tp-link-hs100-smartplug/hs100.sh
