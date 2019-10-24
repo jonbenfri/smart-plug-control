@@ -85,7 +85,7 @@ Advanced familiarity with the command line and linux are required.
 
 1. Using a computer, copy the Raspbian iso to a micro SD card and mount the card.
 
-    See: [Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
+    See: [Download Raspbian for Raspberry Pi](https://www.raspberrypi.org/downloads/raspbian/)
 1. Enable SSH by adding an empty file named `ssh` into the boot partition using the following command:
 
     ```console
