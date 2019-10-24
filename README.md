@@ -1,5 +1,5 @@
-# smart-plug-control
-Control Multiple TP Link Smart Plugs without using Kasa app
+# Smart Plug  Control
+Control Multiple TP Link Smart Plugs (optionally using a Raspberry Pi hub) without using Kasa app
 
 # Setup
 Instructions are for Ubuntu. Adapt appropriately.
