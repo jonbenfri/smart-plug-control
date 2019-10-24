@@ -16,6 +16,7 @@ Now you can issue commands. For example:
 python2 tplink_smartplug.py -t 192.168.0.1 -c info
 python2 tplink_smartplug.py -t 192.168.0.1 -c on
 python2 tplink_smartplug.py -t 192.168.0.1 -c off
+```
 
 # Basic Setup (secured WiFi Network)
 
