@@ -114,7 +114,7 @@ Advanced familiarity with the command line and linux are required.
     ```console
     sudo nmap -Sp 192.168.0.0/24  # Modify IP range and bitmask appropriately for your network settings
     ```
-1.  SSH in as user `pi` and default password `raspberry`.
+1.  SSH in as user `pi` and default password `raspberry`. Update and upgrade the software.
 
 1. Install dnsmasq and hostapd: 
     ```console
