@@ -59,5 +59,6 @@ python2 tplink_smartplug.py -t DEVICE_IP -c off
 ```
 # Advanced Setup (Raspberry Pi Hub)
 
-1. Set up a Raspberry Pi and enable SSH
-    1. See: [Setting up a Raspberry Pi headless](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
+## Set up a Raspberry Pi and enable SSH
+
+See: [Setting up a Raspberry Pi headless](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
