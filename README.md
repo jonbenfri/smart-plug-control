@@ -8,10 +8,10 @@ Instructions are for Ubuntu. Adapt appropriately.
 # Basic Setup (Standalone)
 
 ## Connect to device's WiFi network
-Out of the box or after a full reset, smart plugs will emit their own WiFi network. To connect to this network, first find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
+Smart plugs emit their own WiFi network out of the box or after a full reset. To connect to this network using your master device (computer), scan for networks and find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
 
 ## Issue Basic Control Commands
-Now you can issue commands. For example:
+Now that your master device (computer) is connected to the smart plug's WiFi network, you can issue commands. For example:
 ```python
 python2 tplink_smartplug.py -t 192.168.0.1 -c info
 python2 tplink_smartplug.py -t 192.168.0.1 -c on
@@ -21,11 +21,11 @@ python2 tplink_smartplug.py -t 192.168.0.1 -c off
 # Basic Setup (secured WiFi Network)
 
 ## Connect to device's WiFi network
-Out of the box or after a full reset, smart plugs will emit their own WiFi network. To connect to this network, first find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
+Smart plugs emit their own WiFi network out of the box or after a full reset. To connect to this network using your master device (computer), scan for networks and find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
 
 ## Configure device to connect to secured WiFi network
 
-Issue the following command to configure the smart plug to connect to your secured WiFi network:
+Now that your master device (computer) is connected to the smart plug's WiFi network, you can issue commands. Issue the following command to configure the smart plug to connect to your secured WiFi network:
 ```bash
 python2 tplink_smartplug.py -t 192.168.0.1 -j '{"netif":{"set_stainfo":{"ssid":"SSID","password":"PASSWORD","key_type":3}}}'
 ```
