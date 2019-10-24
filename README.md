@@ -81,7 +81,7 @@ python2 tplink_smartplug.py -t DEVICE_IP -c off
 
 Advanced familiarity with the command line and linux are required.
 
-## 1. Set Up Raspberry Pi (Headless)
+## 1. Set Up Raspberry Pi
 
 1. Using a computer, copy the Raspbian iso to a micro SD card and mount the card.
 
@@ -106,4 +106,69 @@ Advanced familiarity with the command line and linux are required.
 
 1. Safely unmount micro SD card, insert into the Raspberry Pi and boot it up.
 
-For more info, see [Setting up a Raspberry Pi headless](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
+    For more info, see [Setting up a Raspberry Pi headless](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
+
+## 2. Set up Raspberry Pi as WiFi Access Point
+
+1. Find the IP address of the pi:
+    ```console
+    sudo nmap -Sp 192.168.0.0/24  # Modify IP range and bitmask appropriately for your network settings
+    ```
+1.  SSH in as user `pi` and default password `raspberry`.
+
+1. Install dnsmasq and hostapd: 
+    ```console
+    sudo apt install dnsmasq hostapd
+    ```
+    
+1. Disable `dnsmasq` and `hostapd` services:
+    ```console
+    sudo systemctl stop dnsmasq
+    sudo systemctl stop hostapd
+    ```
+1. Back up original `dnsmaq` configuration:
+
+    ```console
+    sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+    ```
+1. Create `/etc/dnsmasq.conf` with the following content:
+    ```console
+    interface=wlan0      # Use the require wireless interface - usually wlan0
+    dhcp-range=192.168.0.1,192.168.0.20,255.255.255.0,24h
+    ```
+1. Reload `dnsmasq` configuration: `sudo systemctl reload dnsmasq`
+
+1. Edit `/etc/hostapd/hostapd.conf` so it shows the following:
+    ```
+    interface=wlan0
+    driver=nl80211
+    ssid=NameOfNetwork
+    hw_mode=g
+    channel=7
+    wmm_enabled=0
+    macaddr_acl=0
+    auth_algs=1
+    ignore_broadcast_ssid=0
+    wpa=2
+    wpa_passphrase=AardvarkBadgerHedgehog
+    wpa_key_mgmt=WPA-PSK
+    wpa_pairwise=TKIP
+    rsn_pairwise=CCMP
+    ```
+    Replace `ssid`, `hw_mode`, `channel` and `wpa_passphrase` appropriately. `ssid` and `wpa_passphrase` should not have quotes around them. `wpa_passphrase` should be 8-64 characters long.
+    
+1. Edit `/etc/default/hostapd` so it reads:
+    ```
+    DAEMON_CONF="/etc/hostapd/hostapd.conf"
+    ```
+
+1. Start `hostapd` and make sure `hostapd` and `dnsmaq` are running properly:
+    ```console
+    sudo systemctl unmask hostapd
+    sudo systemctl enable hostapd
+    sudo systemctl start hostapd
+    sudo systemctl status hostapd
+    sudo systemctl status dnsmasq
+    ```
+
+For more info, see: [Setting up a Raspberry Pi as a Wireless Access Point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
