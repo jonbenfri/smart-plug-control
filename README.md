@@ -102,7 +102,7 @@ Advanced familiarity with the command line and linux are required.
      psk="<Password for your WiFi>"
     }
     ```
-    Replace ssid and psk values appropriately.
+    Replace country, ssid and psk values appropriately.
 
 1. Safely unmount micro SD card, insert into the Raspberry Pi and boot it up.
 
