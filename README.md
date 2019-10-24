@@ -1,7 +1,7 @@
 # Smart Plug  Control
 Control Multiple TP Link Smart Plugs (optionally using a Raspberry Pi hub) without using Kasa app
 
-# Setup
+# Basic Setup (Standalone)
 Instructions are for Ubuntu. Adapt appropriately.
 Using softsCheck guide, [Reverse Engineering the TP-Link HS110](https://www.softscheck.com/en/reverse-engineering-tp-link-hs110/)
 
