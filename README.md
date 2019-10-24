@@ -5,6 +5,12 @@ Using softsCheck guide, [Reverse Engineering the TP-Link HS110](https://www.soft
 
 Instructions are for Ubuntu. Adapt appropriately.
 
+# Table of Contents
+1. [Basic Setup (Standalone)](#basic-setup-standalone)
+2. [Basic Setup (Secured WiFi Network)](#basic-setup-secured-wifi-network)
+3. [Advanced Setup (Raspberry Pi Hub)](#advanced-setup-raspberry-pi-hub)
+
+
 # Basic Setup (Standalone)
 
 ## Connect to device's WiFi network
@@ -18,7 +24,7 @@ python2 tplink_smartplug.py -t 192.168.0.1 -c on
 python2 tplink_smartplug.py -t 192.168.0.1 -c off
 ```
 
-# Basic Setup (secured WiFi Network)
+# Basic Setup (Secured WiFi Network)
 
 ## Connect to device's WiFi network
 Smart plugs emit their own WiFi network out of the box or after a full reset. To connect to this network using your master device (computer), scan for networks and find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
