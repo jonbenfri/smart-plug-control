@@ -41,7 +41,8 @@ NOTE: If your password contains any special characters such as ", ' or \ they mu
 Your smart plug will immediately stop emitting its own WiFi network and connect to the specified secured WiFi network.
 
 ## Find Device IP Address
-1. In order to issue commands, you need to find the IP address of your device on the secured WiFi network. Connect your master device (e.g. computer) to the secured network and issue the following commands:
+
+In order to issue commands, you need to find the IP address of your device on the secured WiFi network. Connect your master device (e.g. computer) to the secured network and issue the following commands:
 ```bash
 sudo nmap -sP 192.168.0.1/24 | grep -B 2 "XX:XX"
 ```
@@ -50,7 +51,8 @@ where XX:XX are the last four hexadecimal numbers in the mac address (see sticke
 Record the IP address of your device.
 
 ## Issue Basic Control Commands
-1. Now that you have the IP address (DEVICE_IP), you can control multiple devices all on the same secured network.
+
+Now that you have the IP address (DEVICE_IP), you can control multiple devices all on the same secured network.
 Connect to the secured network with your master device and issue any commands. For example:
 ```python
 python2 tplink_smartplug.py -t DEVICE_IP -c info
