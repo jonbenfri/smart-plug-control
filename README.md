@@ -13,10 +13,10 @@ Instructions are for Ubuntu. Adapt appropriately.
 
 # Basic Setup (Standalone)
 
-## Connect to device's WiFi network
+## 1. Connect to device's WiFi network
 Smart plugs emit their own WiFi network out of the box or after a full reset. To connect to this network using your master device (computer), scan for networks and find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
 
-## Issue Basic Control Commands
+## 2. Issue Basic Control Commands
 Now that your master device (computer) is connected to the smart plug's WiFi network, you can issue commands. For example:
 ```python
 python2 tplink_smartplug.py -t 192.168.0.1 -c info
@@ -26,10 +26,10 @@ python2 tplink_smartplug.py -t 192.168.0.1 -c off
 
 # Basic Setup (Secured WiFi Network)
 
-## Connect to device's WiFi network
+## 1. Connect to device's WiFi network
 Smart plugs emit their own WiFi network out of the box or after a full reset. To connect to this network using your master device (computer), scan for networks and find the correct network, e.g. "TP-LINK_Smart Plug_XXXX" where XXXX are the last four hexadecimal numbers in the mac address (see sticker on back of smart plug, unique for each device).
 
-## Configure device to connect to secured WiFi network
+## 2. Configure device to connect to secured WiFi network
 
 Now that your master device (computer) is connected to the smart plug's WiFi network, you can issue commands. Issue the following command to configure the smart plug to connect to your secured WiFi network:
 ```bash
@@ -40,7 +40,7 @@ NOTE: If your password contains any special characters such as ", ' or \ they mu
 
 Your smart plug will immediately stop emitting its own WiFi network and connect to the specified secured WiFi network.
 
-## Find Device IP Address
+## 3. Find Device IP Address
 
 In order to issue commands, you need to find the IP address of your device on the secured WiFi network. Connect your master device (e.g. computer) to the secured network and issue the following commands:
 ```bash
@@ -50,7 +50,7 @@ where XX:XX are the last four hexadecimal numbers in the mac address (see sticke
 
 Record the IP address of your device.
 
-## Issue Basic Control Commands
+## 4. Issue Basic Control Commands
 
 Now that you have the IP address (DEVICE_IP), you can control multiple devices all on the same secured network.
 Connect to the secured network with your master device and issue any commands. For example:
@@ -61,6 +61,6 @@ python2 tplink_smartplug.py -t DEVICE_IP -c off
 ```
 # Advanced Setup (Raspberry Pi Hub)
 
-## Set up a Raspberry Pi and enable SSH
+## 1. Set up a Raspberry Pi and enable SSH
 
 See: [Setting up a Raspberry Pi headless](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
