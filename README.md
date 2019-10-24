@@ -79,9 +79,11 @@ python2 tplink_smartplug.py -t DEVICE_IP -c off
 ```
 # Advanced Setup (Raspberry Pi Hub)
 
+Advanced familiarity with the command line and linux are required.
+
 ## 1. Set Up Raspberry Pi (Headless)
 
-1. Using a computer, copy Raspbian iso to micro SD card and mount it.
+1. Using a computer, copy the Raspbian iso to a micro SD card and mount the card.
 
     See: [Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
 1. Enable SSH by adding an empty file named `ssh` into the boot partition using the following command:
