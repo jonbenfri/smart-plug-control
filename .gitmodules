@@ -1,6 +1,3 @@
 [submodule "tplink-smartplug"]
 	path = tplink-smartplug
 	url = https://github.com/softScheck/tplink-smartplug
-[submodule "linuxscripts"]
-	path = linuxscripts
-	url = https://github.com/ggeorgovassilis/linuxscripts
