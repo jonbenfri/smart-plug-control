@@ -83,15 +83,20 @@ Advanced familiarity with the command line and linux are required.
 
 ## 1. Set Up Raspberry Pi
 
+Using Raspberry Pi 3 Model B. Adapt appropriately.
+
 1. Using a computer, copy the Raspbian iso to a micro SD card and mount the card.
 
     For more info, see [Download Raspbian for Raspberry Pi](https://www.raspberrypi.org/downloads/raspbian/)
-1. Enable SSH by adding an empty file named `ssh` into the boot partition using the following command:
+    
+1. Enable SSH by adding an empty file named `ssh` into the boot partition by using the following command:
 
     ```console
     touch /path/to/boot/ssh
     ```
-1. Configure Raspberry Pi to connect to secured WiFi network. Create a file named `wpa_supplicant.conf` in the boot partition and add the following contents:
+    Change `/path/to/boot` appropriately.
+    
+1. (Optional) Configure Raspberry Pi to connect to secured WiFi network. Create a file named `wpa_supplicant.conf` in the boot partition and add the following contents:
     ```console
     country=us
     update_config=1
@@ -110,12 +115,23 @@ Advanced familiarity with the command line and linux are required.
 
 ## 2. Set up Raspberry Pi as WiFi Access Point
 
+Your Raspberry Pi and master device (computer) should now be connected to your network.
+
 1. Find the IP address of the pi:
     ```console
     sudo nmap -Sp 192.168.0.0/24  # Modify IP range and bitmask appropriately for your network settings
     ```
     
 1.  SSH in as user `pi` and default password `raspberry`. Change the default password by running `passwd` (without `sudo`).
+
+1. Enable GPIO shutdown to GPIO21 by adding the following line to `/etc/config.txt':
+    ```
+    dtoverlay=gpio-shutdown,gpio_pin=21
+    ```
+    Now you can short the last two pins (#39 and #40) to safely shutdown in the event of losing SSH access. Useful for preventing mciro SD Card corruption.
+
+
+1. Reboot: `sudo reboot`
 
 1. Update and upgrade the software:
     ```console
@@ -137,9 +153,10 @@ Advanced familiarity with the command line and linux are required.
     ## WiFi interface
     allow-hotplug wlan0
     iface wlan0 inet static
-    address 192.168.0.1
+    address 192.168.0.10
     netmask 255.255.255.0
     ```
+    Note: The static ip address assigned here may conflict with other devices if using a WiFi network for initial access. Be sure to perform a network scan first and pick another ip address if a potential conflict arises.
     
 1. Disable `wpa_supplicant`:
     ```console
@@ -182,7 +199,7 @@ Advanced familiarity with the command line and linux are required.
     ```
     interface=wlan0
     driver=nl80211
-    ssid=NameOfNetwork
+    ssid=SSID
     hw_mode=g
     channel=7
     wmm_enabled=0
@@ -190,12 +207,12 @@ Advanced familiarity with the command line and linux are required.
     auth_algs=1
     ignore_broadcast_ssid=0
     wpa=2
-    wpa_passphrase=AardvarkBadgerHedgehog
+    wpa_passphrase=WPA_PASSPHRASE
     wpa_key_mgmt=WPA-PSK
     wpa_pairwise=TKIP
     rsn_pairwise=CCMP
     ```
-    Replace `ssid`, `hw_mode`, `channel` and `wpa_passphrase` appropriately. `ssid` and `wpa_passphrase` should not have quotes around them and `wpa_passphrase` must be 8-64 characters long.
+    Replace `SSI`, `hw_mode`, `channel` and `wpa_passphrase` values appropriately. `ssid` and `wpa_passphrase` should not have quotes around them and `wpa_passphrase` must be 8-64 characters long.
     
 1. Edit `/etc/default/hostapd` so it reads:
     ```
