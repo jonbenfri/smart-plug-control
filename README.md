@@ -114,31 +114,71 @@ Advanced familiarity with the command line and linux are required.
     ```console
     sudo nmap -Sp 192.168.0.0/24  # Modify IP range and bitmask appropriately for your network settings
     ```
-1.  SSH in as user `pi` and default password `raspberry`. Update and upgrade the software.
+    
+1.  SSH in as user `pi` and default password `raspberry`. Change the default password by running `passwd`.
+
+1. Update and upgrade the software:
+    ```console
+    sudo apt-get update 
+    sudo apt-get upgrade 
+    sudo rpi-update
+    ```
+    
+1. Edit `/etc/network/interfaces` as follows:
+    ```
+    ## Local (loopback) interface
+    auto lo
+    iface lo inet loopback
+
+    ## Wired ethernet interface
+    allow-hotplug eth0
+    iface eth0 inet dhcp
+
+    ## WiFi interface
+    allow-hotplug wlan0
+    iface wlan0 inet static
+    address 192.168.0.1
+    netmask 255.255.255.0
+    ```
+    
+1. Disable `wpa_supplicant`:
+    ```console
+    sudo systemctl disable wpa_supplicant
+    sudo systemctl mask wpa_supplicant
+    ```
 
 1. Install dnsmasq and hostapd: 
     ```console
     sudo apt install dnsmasq hostapd
     ```
     
-1. Disable `dnsmasq` and `hostapd` services:
+1. Stop `dnsmasq` and `hostapd` services:
     ```console
     sudo systemctl stop dnsmasq
     sudo systemctl stop hostapd
     ```
+    
 1. Back up original `dnsmaq` configuration:
-
     ```console
     sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
     ```
+    
 1. Create `/etc/dnsmasq.conf` with the following content:
     ```console
     interface=wlan0      # Use the require wireless interface - usually wlan0
     dhcp-range=192.168.0.1,192.168.0.20,255.255.255.0,24h
+    no-resolv
     ```
-1. Reload `dnsmasq` configuration: `sudo systemctl reload dnsmasq`
+    
+    Adjust the IP range, subnet mask and lease time as desired. Ensure static IP specified in `/etc/network/interfaces` is in the range specified in `dnsmasq.conf`.
+    
+1. Reload `dnsmasq` configuration:
+    ```console
+    sudo systemctl restart dnsmasq
+    sudo systemctl reload dnsmasq
+    ```
 
-1. Edit `/etc/hostapd/hostapd.conf` so it shows the following:
+1. Edit `/etc/hostapd/hostapd.conf` so it contains the following:
     ```
     interface=wlan0
     driver=nl80211
@@ -155,14 +195,14 @@ Advanced familiarity with the command line and linux are required.
     wpa_pairwise=TKIP
     rsn_pairwise=CCMP
     ```
-    Replace `ssid`, `hw_mode`, `channel` and `wpa_passphrase` appropriately. `ssid` and `wpa_passphrase` should not have quotes around them. `wpa_passphrase` should be 8-64 characters long.
+    Replace `ssid`, `hw_mode`, `channel` and `wpa_passphrase` appropriately. `ssid` and `wpa_passphrase` should not have quotes around them and `wpa_passphrase` must be 8-64 characters long.
     
 1. Edit `/etc/default/hostapd` so it reads:
     ```
     DAEMON_CONF="/etc/hostapd/hostapd.conf"
     ```
 
-1. Start `hostapd` and make sure `hostapd` and `dnsmaq` are running properly:
+1. Disable and mask wpa_supplicant. Start `hostapd` and make sure `hostapd` and `dnsmaq` are running properly:
     ```console
     sudo systemctl unmask hostapd
     sudo systemctl enable hostapd
@@ -170,5 +210,9 @@ Advanced familiarity with the command line and linux are required.
     sudo systemctl status hostapd
     sudo systemctl status dnsmasq
     ```
+    
+1. Reboot: `sudo reboot`
+
+1. You should now see the ssid live. Connect to it and ssh in after connecting, using the static ip specified in `/etc/network/interfaces`: `ssh pi@192.168.0.1`
 
 For more info, see: [Setting up a Raspberry Pi as a Wireless Access Point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
