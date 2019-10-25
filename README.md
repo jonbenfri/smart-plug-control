@@ -113,7 +113,7 @@ Using Raspberry Pi 3 Model B. Adapt appropriately.
 
     For more info, see [Setting up a Raspberry Pi headless](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md)
 
-## 2. Set up Raspberry Pi as WiFi Access Point
+## 2. Configure Raspberry Pi as WiFi Access Point
 
 Your Raspberry Pi and master device (computer) should now be connected to your network.
 
@@ -232,4 +232,8 @@ Your Raspberry Pi and master device (computer) should now be connected to your n
 
 1. You should now see the ssid live. Connect to it and ssh in after connecting, using the static ip specified in `/etc/network/interfaces`: `ssh pi@192.168.0.10`
 
-For more info, see: [Setting up a Raspberry Pi as a Wireless Access Point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
+    For more info, see: [Setting up a Raspberry Pi as a Wireless Access Point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
+
+## 3. Configure and Control Smart Plugs
+
+Follow [Basic Setup (Secured WiFi Network)](#basic-setup-secured-wifi-network) as above, specifying the SSID and PASSWORD for your Raspberry Pi access point as configured in the previous steps.
