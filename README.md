@@ -115,7 +115,7 @@ Advanced familiarity with the command line and linux are required.
     sudo nmap -Sp 192.168.0.0/24  # Modify IP range and bitmask appropriately for your network settings
     ```
     
-1.  SSH in as user `pi` and default password `raspberry`. Change the default password by running `passwd`.
+1.  SSH in as user `pi` and default password `raspberry`. Change the default password by running `passwd` (without `sudo`).
 
 1. Update and upgrade the software:
     ```console
