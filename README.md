@@ -230,6 +230,6 @@ Your Raspberry Pi and master device (computer) should now be connected to your n
     
 1. Reboot: `sudo reboot`
 
-1. You should now see the ssid live. Connect to it and ssh in after connecting, using the static ip specified in `/etc/network/interfaces`: `ssh pi@192.168.0.1`
+1. You should now see the ssid live. Connect to it and ssh in after connecting, using the static ip specified in `/etc/network/interfaces`: `ssh pi@192.168.0.10`
 
 For more info, see: [Setting up a Raspberry Pi as a Wireless Access Point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
